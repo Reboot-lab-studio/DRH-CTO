@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodiagnostic : de la DRH à la direction de la transformation | Benjamin Chaminade</title>
+<meta name="description" content="Un autodiagnostic en 28 questions pour situer votre fonction RH sur l’échelle du HR Design et mesurer votre préparation à la direction de la transformation. Outil compagnon du guide pratique Le DRH Chief Transformation Officer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f1ea;
+    --paper-2: #ebe5da;
+    --accent: #d94f04;
+    --accent-2: #2c5e8a;
+    --muted: #6b6157;
+    --good: #4a7c4a;
+    --warn: #b8860b;
+    --bad: #d94f04;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(217, 79, 4, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(44, 94, 138, 0.04) 0%, transparent 40%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 60px 32px 80px; }
+
+  header {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 28px 0 24px;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    text-align: left;
+    gap: 12px;
+  }
+  .eyebrow span:last-child { color: var(--accent); font-weight: 600; }
+  h1 {
+    font-weight: 300;
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .lede { font-size: 18px; color: var(--muted); max-width: 60ch; margin: 0 auto; }
+  .meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  .intro {
+    background: var(--paper-2);
+    border: 1px solid var(--ink);
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .intro::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 40px; height: 40px;
+    border-top: 4px solid var(--accent);
+    border-left: 4px solid var(--accent);
+  }
+  .intro h2 {
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .intro p { margin-bottom: 12px; }
+  .intro p:last-of-type { margin-bottom: 0; }
+  .start-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .start-btn:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    padding: 16px 0 12px;
+    margin-bottom: 24px;
+    z-index: 10;
+    border-bottom: 1px solid rgba(26,26,26,0.1);
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .progress-info b { color: var(--ink); }
+  .progress-bar { height: 3px; background: var(--paper-2); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+  .part-title {
+    margin: 8px 0 32px;
+    padding: 20px 24px;
+    border-left: 4px solid var(--accent);
+    background: var(--paper-2);
+  }
+  .part-title .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .part-title h2 { font-weight: 400; font-size: 24px; line-height: 1.25; margin-bottom: 6px; }
+  .part-title p { color: var(--muted); font-size: 16px; }
+
+  .question {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px dashed rgba(26,26,26,0.2);
+  }
+  .q-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .q-meta .dim { color: var(--accent); font-weight: 600; }
+  .q-text { font-size: 22px; line-height: 1.35; margin-bottom: 24px; letter-spacing: -0.01em; }
+  .options { display: grid; gap: 10px; }
+  .options.yesno { grid-template-columns: 1fr 1fr; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid rgba(26,26,26,0.2);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--ink);
+  }
+  .option:hover { background: var(--paper-2); border-color: var(--ink); }
+  .option.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .option .marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 24px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .option.selected .marker { color: var(--accent); }
+
+  .section-break { margin: 48px 0; text-align: center; position: relative; }
+  .section-break::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(26,26,26,0.2);
+  }
+  .section-break span {
+    background: var(--paper);
+    padding: 0 20px;
+    position: relative;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+
+  .submit-wrap { margin-top: 40px; padding-top: 32px; border-top: 4px solid var(--ink); }
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .submit-btn:hover:not(:disabled) { background: var(--ink); }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .submit-help {
+    text-align: center;
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  #results { display: none; }
+  .result-hero { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 32px 0 36px; margin-bottom: 40px; }
+  .rung-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .rung-name {
+    font-size: clamp(36px, 6.5vw, 58px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 144;
+  }
+  .rung-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+  .rung-role b { color: var(--accent); }
+  .rung-summary { font-size: 18px; color: var(--muted); max-width: 62ch; }
+
+  .ladder { margin-bottom: 48px; padding: 24px; background: var(--paper-2); border: 1px solid var(--ink); }
+  .ladder-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 18px;
+    font-weight: 600;
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr;
+    gap: 14px;
+  }
+  .ladder-rung {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(26,26,26,0.2);
+    align-items: baseline;
+    opacity: 0.4;
+  }
+  .ladder-rung:last-child { border-bottom: none; }
+  .ladder-rung.you { opacity: 1; background: var(--ink); color: var(--paper); margin: 6px -24px; padding: 14px 24px; }
+  .ladder-rung.below { opacity: 0.7; }
+  .ladder-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; }
+  .ladder-rung.you .ladder-num { color: var(--accent); }
+  .ladder-name { font-size: 15px; }
+  .ladder-name b { font-weight: 600; }
+  .ladder-role { font-size: 15px; font-style: italic; }
+  .ladder-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+  .alert {
+    margin-bottom: 48px;
+    padding: 20px 24px;
+    border: 2px solid var(--warn);
+    background: rgba(184, 134, 11, 0.07);
+  }
+  .alert .reco-tag { color: var(--warn); }
+
+  .block { margin-bottom: 48px; }
+  .dim-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .dim-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px dashed rgba(26,26,26,0.2);
+  }
+  .dim-row:last-child { border-bottom: none; }
+  .dim-info { min-width: 0; }
+  .dim-label { font-size: 17px; margin-bottom: 6px; }
+  .dim-bar-wrap { height: 6px; background: var(--paper-2); width: 100%; margin-top: 8px; overflow: hidden; }
+  .dim-bar { height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .dim-bar.low { background: var(--bad); }
+  .dim-bar.mid { background: var(--warn); }
+  .dim-bar.high { background: var(--good); }
+  .dim-score { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; white-space: nowrap; }
+
+  .reco-block { margin-bottom: 32px; padding: 24px; background: var(--paper-2); border-left: 4px solid var(--accent); }
+  .reco-block.priority { border-left-color: var(--bad); background: rgba(217, 79, 4, 0.06); }
+  .reco-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .reco-title { font-size: 22px; font-weight: 400; margin-bottom: 12px; line-height: 1.3; letter-spacing: -0.01em; }
+  .reco-why { font-size: 16px; color: var(--muted); margin-bottom: 16px; font-style: italic; }
+  .reco-actions { list-style: none; counter-reset: action; }
+  .reco-actions li { counter-increment: action; padding: 10px 0 10px 36px; position: relative; border-top: 1px dashed rgba(26,26,26,0.15); }
+  .reco-actions li:first-child { border-top: none; }
+  .reco-actions li::before {
+    content: counter(action, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .ready-score { font-size: 20px; margin-bottom: 12px; }
+  .ready-score b { font-weight: 600; }
+  .ready-phase { font-size: 16px; color: var(--muted); margin-bottom: 20px; max-width: 62ch; }
+  .ready-list { list-style: none; }
+  .ready-list li { padding: 12px 0; border-top: 1px dashed rgba(26,26,26,0.15); font-size: 16px; }
+  .ready-list li:first-child { border-top: none; }
+  .ready-list .step {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .cta { border: 4px solid var(--ink); padding: 32px; margin-bottom: 32px; text-align: center; background: var(--paper); }
+  .cta h3 { font-size: 28px; font-weight: 400; margin-bottom: 16px; font-style: italic; letter-spacing: -0.01em; }
+  .cta p { color: var(--muted); max-width: 52ch; margin: 0 auto 20px; }
+  .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn {
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .cta-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .cta-btn.secondary { background: transparent; color: var(--ink); }
+  .cta-btn.secondary:hover { background: var(--ink); color: var(--paper); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(26,26,26,0.2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media print {
+    @page { size: A4; margin: 18mm 16mm; }
+    body { background: white; font-size: 11pt; line-height: 1.4; }
+    .wrap { max-width: 100%; padding: 0; }
+    .progress-wrap, #questionnaire, .start-btn, .submit-wrap, .cta-actions, #intro { display: none !important; }
+    #results { display: block !important; }
+    header { border-top-width: 2px; page-break-inside: avoid; padding: 0 0 16px; margin-bottom: 24px; }
+    h1 { font-size: 26pt; }
+    .lede { font-size: 11pt; }
+    .meta { display: none; }
+    .result-hero { page-break-inside: avoid; padding: 16px 0 20px; margin-bottom: 24px; border-top-width: 2px; }
+    .rung-name { font-size: 28pt; }
+    .rung-summary { font-size: 11pt; }
+    .ladder, .reco-block, .alert, .cta { page-break-inside: avoid; }
+    .reco-block, .reco-block.priority { background: white; border-left-width: 3px; }
+    .cta { border-width: 2px; }
+    a { color: var(--ink); text-decoration: underline; }
+    footer { font-size: 9pt; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 20px 60px; }
+    h1 { font-size: 34px; }
+    .q-text { font-size: 19px; }
+    .meta { gap: 16px; }
+    .options.yesno { grid-template-columns: 1fr; }
+    .ladder-title, .ladder-rung { grid-template-columns: 32px 1fr 1fr; gap: 10px; }
+    .ladder-name, .ladder-role { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">
+      <span>HR Design / Autodiagnostic</span>
+      <span>v.1 / 2026</span>
+    </div>
+    <h1>De la DRH à la<br><em>direction de la transformation ?</em></h1>
+    <p class="lede">Un autodiagnostic pour les DRH et les équipes RH qui veulent passer de l’accompagnement des transformations à leur direction.</p>
+    <div class="meta">
+      <span><b>8 min</b> / 28 questions</span>
+      <span><b>5 échelons</b> et 5 déplacements</span>
+      <span><b>Vos réponses</b> restent sur votre appareil</span>
+    </div>
+  </header>
+
+  <div class="intro" id="intro">
+    <h2>Avant de commencer</h2>
+    <p>Cet outil accompagne le guide pratique <em>Le DRH Chief Transformation Officer</em>. Il se déroule en 2 parties.</p>
+    <p>La première partie (20 questions) situe votre fonction RH sur l’échelle du HR Design, de la conformité au business creator, et repère le déplacement à engager en premier. La seconde partie (8 questions) mesure votre préparation personnelle à la direction de la transformation et vous indique la phase de la feuille de route en 9 étapes par laquelle commencer.</p>
+    <p>Répondez pour votre fonction telle qu’elle fonctionne aujourd’hui, et non telle que vous aimeriez qu’elle fonctionne. Aucune réponse neutre n’est proposée, et ce choix est délibéré.</p>
+    <p>Vos réponses ne quittent jamais cette page : rien n’est envoyé nulle part. Vous pouvez enregistrer votre résultat en PDF à la fin, avec la fonction d’impression de votre navigateur.</p>
+    <button class="start-btn" onclick="startAssessment()">Commencer l’autodiagnostic →</button>
+  </div>
+
+  <div id="questionnaire" style="display:none;">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span>Réponses <b id="qNum">0</b> sur <b id="qTotal">28</b></span>
+        <span><b id="qPct">0 %</b></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div id="qContainer"></div>
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" disabled onclick="computeResults()">Voir mon résultat</button>
+      <p class="submit-help" id="submitHelp">Répondez aux 28 questions pour voir votre résultat</p>
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="result-hero">
+      <div class="rung-label">L’échelon actuel de votre fonction RH</div>
+      <h2 class="rung-name" id="rungName"></h2>
+      <div class="rung-role">Rôle dans la transformation : <b id="rungRole"></b></div>
+      <p class="rung-summary" id="rungSummary"></p>
+    </div>
+
+    <div class="ladder">
+      <div class="ladder-title"><span></span><span>Posture de la fonction RH</span><span>Rôle dans la transformation</span></div>
+      <div id="ladderRungs"></div>
+      <p class="ladder-note">Le poste de directeur de la transformation se joue au quatrième barreau, quand la posture de la fonction et son rôle dans la transformation y arrivent ensemble.</p>
+    </div>
+
+    <div id="alertBox"></div>
+
+    <div class="block">
+      <div class="dim-title">Vos scores sur les 5 déplacements</div>
+      <div id="dimRows"></div>
+    </div>
+
+    <div class="block">
+      <div class="dim-title">Le déplacement à engager en premier</div>
+      <div id="recoBlocks"></div>
+    </div>
+
+    <div class="block">
+      <div class="dim-title">Votre préparation à la direction de la transformation</div>
+      <div id="readyBlock"></div>
+    </div>
+
+    <div class="cta">
+      <h3>Aller plus loin</h3>
+      <p>Lisez l’article qui accompagne ce diagnostic, ou enregistrez votre résultat en PDF pour le partager avec votre équipe ou votre direction générale.</p>
+      <div class="cta-actions">
+        <a href="https://benjaminchaminade.com/drh-chief-transformation-officer/" class="cta-btn">Lire l’article →</a>
+        <a href="https://benjaminchaminade.com/contact/" class="cta-btn secondary">Me contacter</a>
+        <button class="cta-btn secondary" onclick="window.print()">Enregistrer en PDF</button>
+        <button class="cta-btn secondary" onclick="restart()">Recommencer</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>HR Design © Benjamin Chaminade 2026</span>
+    <span><a href="https://benjaminchaminade.com">benjaminchaminade.com</a></span>
+  </footer>
+
+</div>
+
+
+<script>
+// ============================================================
+// DONNÉES
+// Partie 1 : 5 déplacements x 4 questions = 20 questions, valeurs 1 à 4
+// Partie 2 : 8 questions oui ou non sur la préparation personnelle
+// ============================================================
+
+const DIMENSIONS = [
+  { id: "anticipation", label: "De la réponse à l’anticipation" },
+  { id: "experience", label: "De la marque employeur à l’architecture de l’expérience" },
+  { id: "institution", label: "De la productivité individuelle à l’intelligence institutionnelle" },
+  { id: "capacites", label: "Des enquêtes d’engagement à la prévision des capacités" },
+  { id: "coherence", label: "Du propriétaire de processus au garant de la cohérence" }
+];
+
+const QUESTIONS = [
+  // --- 1. Anticipation ---
+  { dim: "anticipation",
+    q: "Face à la commande d’un dirigeant, quelle est la réaction habituelle de votre fonction RH ?",
+    options: [
+      { v: 1, t: "Nous acceptons la formulation et lançons l’exécution." },
+      { v: 2, t: "Nous acceptons la formulation et demandons des précisions." },
+      { v: 3, t: "Nous reformulons la commande dans certains cas avant de commencer." },
+      { v: 4, t: "Nous interrogeons la question à chaque commande avant de nous engager sur le travail." }
+    ] },
+  { dim: "anticipation",
+    q: "À quelle fréquence la fonction RH porte-t-elle au CODIR un problème que personne n’a encore nommé ?",
+    options: [
+      { v: 1, t: "Rarement : nous traitons ce qui remonte jusqu’à nous." },
+      { v: 2, t: "Une ou deux fois par an, autour de l’enquête d’engagement." },
+      { v: 3, t: "Quelques fois par an, quand les données deviennent impossibles à ignorer." },
+      { v: 4, t: "En continu : repérer les problèmes non nommés fait partie de notre métier." }
+    ] },
+  { dim: "anticipation",
+    q: "Votre planification des effectifs et des compétences fonctionne de façon :",
+    options: [
+      { v: 1, t: "Réactive : nous aidons à pourvoir les postes quand ils s’ouvrent." },
+      { v: 2, t: "Annuelle : un exercice par an, centré sur les effectifs." },
+      { v: 3, t: "Trimestrielle : nous ajustons les plans aux priorités de l’entreprise." },
+      { v: 4, t: "Continue : un modèle vivant éclaire les décisions stratégiques." }
+    ] },
+  { dim: "anticipation",
+    q: "Quand l’entreprise prépare une transformation, la fonction RH intervient :",
+    options: [
+      { v: 1, t: "Après la décision, pour en gérer les conséquences humaines." },
+      { v: 2, t: "Juste avant la décision, pour en valider la faisabilité." },
+      { v: 3, t: "Pendant la discussion, comme une voix parmi d’autres." },
+      { v: 4, t: "Dès le cadrage, parce que les capacités des équipes décident de ce qui est possible." }
+    ] },
+  // --- 2. Architecture de l’expérience ---
+  { dim: "experience",
+    q: "L’écart entre la promesse de votre marque employeur et l’expérience vécue par vos salariés :",
+    options: [
+      { v: 1, t: "Nous ne l’avons jamais mesuré." },
+      { v: 2, t: "Nous le supposons sans l’avoir étudié." },
+      { v: 3, t: "Nous mesurons la satisfaction à quelques moments clés." },
+      { v: 4, t: "Nous le cartographions et le réduisons en continu, de bout en bout." }
+    ] },
+  { dim: "experience",
+    q: "Sur le cycle des talents (attraction, recrutement, intégration, management, reconnaissance, développement, départ et lien après le départ), combien d’étapes sont conçues de façon délibérée ?",
+    options: [
+      { v: 1, t: "Une ou deux : le reste relève de l’improvisation ou de l’héritage." },
+      { v: 2, t: "Trois ou quatre : les plus visibles." },
+      { v: 3, t: "Cinq ou six : nous avançons étape par étape." },
+      { v: 4, t: "Les huit : nous traitons le cycle comme une seule architecture." }
+    ] },
+  { dim: "experience",
+    q: "Quand des candidats refusent une offre, votre compréhension de leurs raisons est :",
+    options: [
+      { v: 1, t: "Faible : nous supposons une question de salaire." },
+      { v: 2, t: "Partielle : le recruteur note quelques raisons de façon informelle." },
+      { v: 3, t: "Bonne : un débriefing structuré suit les refus." },
+      { v: 4, t: "Complète : les refus alimentent directement la refonte de l’expérience." }
+    ] },
+  { dim: "experience",
+    q: "Votre relation avec les anciens salariés est :",
+    options: [
+      { v: 1, t: "Inexistante : ils partent et la page se tourne." },
+      { v: 2, t: "Polie : nous restons en contact sur LinkedIn." },
+      { v: 3, t: "Active : un réseau ou un programme d’alumni existe." },
+      { v: 4, t: "Stratégique : les anciens recommandent, reviennent, achètent et portent notre image." }
+    ] },
+  // --- 3. Intelligence institutionnelle ---
+  { dim: "institution",
+    q: "Quand un salarié construit un usage utile de l’IA, que devient cet usage ?",
+    options: [
+      { v: 1, t: "Il reste sur son poste, sans que personne d’autre le connaisse." },
+      { v: 2, t: "Son équipe finit par le reprendre, par le bouche-à-oreille." },
+      { v: 3, t: "Un canal permet de partager ces usages de façon informelle." },
+      { v: 4, t: "Un processus structuré le transforme en pratique documentée et transmissible." }
+    ] },
+  { dim: "institution",
+    q: "La valeur de l’IA dans votre fonction RH se mesure par :",
+    options: [
+      { v: 1, t: "Aucune mesure." },
+      { v: 2, t: "Le nombre de licences et le taux d’adoption." },
+      { v: 3, t: "Les gains de productivité individuels." },
+      { v: 4, t: "Les gains de capacité collective, au-delà des gains individuels." }
+    ] },
+  { dim: "institution",
+    q: "L’apprentissage entre équipes, dans votre entreprise, ressemble à :",
+    options: [
+      { v: 1, t: "Des silos, par défaut." },
+      { v: 2, t: "Quelques événements ponctuels ou annuels." },
+      { v: 3, t: "Des communautés de pratique actives." },
+      { v: 4, t: "Une collaboration réelle : n’importe qui peut lancer une idée, et les décisions se prennent ensemble." }
+    ] },
+  { dim: "institution",
+    q: "Quand vous lancez une nouvelle pratique RH, la conception associe :",
+    options: [
+      { v: 1, t: "La seule équipe RH, qui communique ensuite le résultat." },
+      { v: 2, t: "L’équipe RH, qui demande ensuite des retours." },
+      { v: 3, t: "L’équipe RH et un échantillon des personnes concernées." },
+      { v: 4, t: "Toutes les personnes concernées, dans une coconception ouverte." }
+    ] },
+  // --- 4. Prévision des capacités ---
+  { dim: "capacites",
+    q: "Si votre direction générale vous demandait demain quelles compétences manqueront à l’entreprise dans 12 mois, votre réponse serait :",
+    options: [
+      { v: 1, t: "Impossible : il faudrait un projet pour le savoir." },
+      { v: 2, t: "Approximative : nous disposons d’anecdotes de managers." },
+      { v: 3, t: "Précise pour les postes critiques." },
+      { v: 4, t: "Précise pour toute l’organisation, grâce à une cartographie vivante des capacités." }
+    ] },
+  { dim: "capacites",
+    q: "Dans les décisions du CODIR ou du conseil d’administration, les données sur les équipes :",
+    options: [
+      { v: 1, t: "Se limitent aux effectifs et aux coûts." },
+      { v: 2, t: "Apparaissent de temps en temps, avec l’engagement et le turnover." },
+      { v: 3, t: "Figurent dans le tableau de bord." },
+      { v: 4, t: "Pèsent autant que les données financières dans les décisions stratégiques." }
+    ] },
+  { dim: "capacites",
+    q: "Le risque d’obsolescence des compétences de vos salariés est :",
+    options: [
+      { v: 1, t: "Non suivi." },
+      { v: 2, t: "Discuté en entretien annuel, sans mesure." },
+      { v: 3, t: "Suivi par équipe pour les postes critiques." },
+      { v: 4, t: "Suivi par personne et agrégé en lecture stratégique." }
+    ] },
+  { dim: "capacites",
+    q: "Les résultats de votre enquête d’engagement débouchent sur :",
+    options: [
+      { v: 1, t: "Une présentation, rarement suivie de plans d’action." },
+      { v: 2, t: "Des plans d’action à l’exécution inégale." },
+      { v: 3, t: "Des plans d’action exécutés pour l’essentiel dans l’année." },
+      { v: 4, t: "Des signaux déjà suivis en continu, sans attendre l’enquête." }
+    ] },
+  // --- 5. Garant de la cohérence ---
+  { dim: "coherence",
+    q: "Les valeurs affichées par l’entreprise et les critères de l’entretien annuel sont :",
+    options: [
+      { v: 1, t: "Déconnectés : les valeurs restent sur les affiches et l’évaluation porte sur les indicateurs." },
+      { v: 2, t: "Reliés de loin, sans exigence." },
+      { v: 3, t: "Alignés pour l’essentiel, après un travail dédié." },
+      { v: 4, t: "Étroitement alignés : une évaluation échoue quand les valeurs restent invisibles." }
+    ] },
+  { dim: "coherence",
+    q: "Quand une transformation annonce de nouveaux comportements, vos règles RH (recrutement, évaluation, rémunération et parcours) :",
+    options: [
+      { v: 1, t: "Restent inchangées." },
+      { v: 2, t: "Évoluent après coup, à la demande des salariés." },
+      { v: 3, t: "Évoluent pendant le programme, pour une partie d’entre elles." },
+      { v: 4, t: "Changent en premier, avant la formation des managers." }
+    ] },
+  { dim: "coherence",
+    q: "Votre discours sur l’innovation et votre tolérance aux expériences ratées :",
+    options: [
+      { v: 1, t: "Se contredisent : l’innovation est célébrée et l’échec sanctionné." },
+      { v: 2, t: "Varient selon les managers." },
+      { v: 3, t: "Concordent pour l’essentiel : la plupart des équipes savent qu’elles ont le droit d’essayer." },
+      { v: 4, t: "Concordent pleinement : les expériences ratées sont documentées et partagées." }
+    ] },
+  { dim: "coherence",
+    q: "La contribution de votre fonction RH à la stratégie tient en une phrase :",
+    options: [
+      { v: 1, t: "Nous n’avons pas cette phrase." },
+      { v: 2, t: "Nous en avons une, générique, valable pour n’importe quelle fonction RH." },
+      { v: 3, t: "Nous en avons une, propre à l’entreprise, mais peu partagée." },
+      { v: 4, t: "Nous en avons une, propre à l’entreprise, partagée et utilisée devant le CODIR." }
+    ] }
+];
+
+// Partie 2 : questions de la fiche 9 du guide, reliées aux étapes de la fiche 10
+const READY = [
+  { q: "Avez-vous déjà répondu d’un budget de projet supérieur à celui de votre propre fonction ?",
+    step: 4, todo: "Demandez la responsabilité d’un chantier transversal entier, avec son budget et ses indicateurs." },
+  { q: "Pouvez-vous chiffrer l’effet attendu d’un chantier RH sur la marge ou le chiffre d’affaires ?",
+    step: 5, todo: "Reliez un chantier à un effet sur la marge, le chiffre d’affaires ou les coûts, dans le langage de la direction financière." },
+  { q: "Avez-vous déjà arbitré entre 2 directions sans autorité hiérarchique sur elles ?",
+    step: 7, todo: "Proposez au CODIR une liste unique des chantiers en cours et la mesure de la saturation des métiers les plus exposés." },
+  { q: "Connaissez-vous les usages de l’intelligence artificielle déjà en place dans votre entreprise ?",
+    step: 1, todo: "Recensez les usages de l’IA déjà en place, et situez votre fonction RH face à eux." },
+  { q: "Votre fonction RH a-t-elle changé l’une de ses règles d’évaluation, de rémunération ou de recrutement au cours des 2 dernières années ?",
+    step: 2, todo: "Changez la règle que les salariés regardent en premier, et testez-la sur un périmètre réduit." },
+  { q: "Un successeur peut-il reprendre la DRH dès demain ?",
+    step: 3, todo: "Identifiez un successeur et déléguez-lui le pilotage courant de la fonction RH." },
+  { q: "Votre direction générale vous consulte-t-elle sur des décisions sans lien direct avec les ressources humaines ?",
+    step: 6, todo: "Remplacez au CODIR le score d’engagement par une prévision des capacités." },
+  { q: "Pouvez-vous décrire en une page la feuille de route de transformation de votre entreprise pour les 3 prochaines années ?",
+    step: 8, todo: "Écrivez le récit de la transformation pour le CODIR, les actionnaires, les clients et les candidats." }
+];
+
+const STEPS = {
+  1: "Étape 1 · Se situer", 2: "Étape 2 · Changer une règle RH", 3: "Étape 3 · Préparer sa relève",
+  4: "Étape 4 · Diriger un chantier entier", 5: "Étape 5 · Chiffrer ses effets", 6: "Étape 6 · Apporter une prévision des capacités",
+  7: "Étape 7 · Arbitrer les projets", 8: "Étape 8 · Raconter la transformation", 9: "Étape 9 · Obtenir le périmètre avant le titre"
+};
+
+const PHASES = [
+  { n: 1, name: "Phase 1 · Prouver sur sa fonction", steps: [1, 2, 3],
+    text: "Commencez par votre propre fonction : une règle RH changée, visible et mesurée constitue la première porte vers la direction de la transformation." },
+  { n: 2, name: "Phase 2 · Élargir son périmètre", steps: [4, 5, 6],
+    text: "Votre fonction vous donne une base solide. La prochaine porte est un résultat économique chiffré, obtenu sur un chantier dont vous répondez entièrement." },
+  { n: 3, name: "Phase 3 · Négocier le poste", steps: [7, 8, 9],
+    text: "Vous disposez des preuves de pilotage. Il reste à arbitrer entre les projets, à raconter la transformation et à négocier le périmètre avant le titre." }
+];
+
+const LADDER = [
+  { n: 1, name: "Conformité", role: "Sécuriser",
+    summary: "Le centre de gravité de votre fonction reste la protection juridique de l’entreprise. Ce travail est réel et nécessaire, et il ne suffit pas pour porter une transformation. Dans un projet, votre fonction RH sécurise : elle prépare la consultation du CSE et protège l’entreprise." },
+  { n: 2, name: "Prestataire de services", role: "Accompagner",
+    summary: "Votre fonction gère un catalogue de services que les clients internes consomment. La qualité peut être élevée, et l’influence reste limitée parce que la fonction intervient après chaque décision importante. Dans une transformation, elle accompagne : elle forme, communique et soutient les managers." },
+  { n: 3, name: "Business partner", role: "Piloter",
+    summary: "Votre fonction est intégrée aux métiers, consultée sur les décisions d’organisation et chargée de traduire la stratégie en plans RH. L’étiquette qui servait de ligne d’arrivée devient un plafond. Dans une transformation, elle pilote : elle coordonne le projet et anime les instances, sans toucher aux règles qui décident des comportements." },
+  { n: 4, name: "Business contributor", role: "Porter",
+    summary: "Les travaux de votre fonction changent ce que l’entreprise décide, au-delà de la manière dont elle exécute ses décisions. Dans une transformation, elle porte : elle change d’abord ses propres règles, puis aide les managers à changer leurs pratiques. Ce barreau est celui du DRH qui peut viser la direction de la transformation." },
+  { n: 5, name: "Business creator", role: "Vendre la méthode",
+    summary: "Votre fonction génère une valeur externe directe : des méthodes, des formations ou des analyses que le marché accepte de payer. Le cas reste rare. Dans une transformation, elle propose à des clients ou à la filière la méthode qui a transformé ses propres équipes." }
+];
+
+const RECOMMENDATIONS = {
+  anticipation: {
+    title: "Interroger les commandes avant de les accepter",
+    why: "Votre fonction reste en position de réponse. Le moyen le plus rapide d’en sortir consiste à faire de la reformulation de la commande une pratique visible et nommée (fiche 7 du guide, phase d’inspiration).",
+    actions: [
+      "Sur les 3 prochaines commandes, organisez une séance de reformulation de 30 minutes avant de valider le périmètre, et consignez la question reformulée.",
+      "Créez un modèle de commande d’une page avec 3 champs obligatoires : le public visé, l’hypothèse de départ et ce qui prouverait que vous vous trompez.",
+      "Choisissez une question stratégique que le CODIR n’a pas encore posée à la fonction RH, et apportez une réponse à la prochaine réunion sans attendre la demande.",
+      "Passez en revue les 6 derniers projets RH : comptez ceux qui sont partis d’une commande acceptée telle quelle et ceux qui sont partis d’une commande coécrite, puis fixez un objectif pour les 6 suivants."
+    ] },
+  experience: {
+    title: "Cartographier et repenser une expérience de bout en bout",
+    why: "Votre cycle des talents est en partie conçu et en partie improvisé. L’écart se lit dans les refus d’offres, dans les départs des premiers mois et dans les avis publics des candidats.",
+    actions: [
+      "Choisissez un moment touché par la transformation (le premier entretien d’un candidat, la première semaine d’un salarié ou un entretien de départ), puis comparez ce qui est promis, livré et ressenti (fiche 9 du guide).",
+      "Débriefez les 10 prochains refus d’offre en cherchant des tendances dans l’expérience, au-delà du salaire.",
+      "Ouvrez une vraie conversation avec 5 anciens salariés partis depuis moins de 18 mois, et demandez-leur pour quelle raison ils seraient restés, sans défendre l’entreprise.",
+      "Remplacez une enquête par un prototype : livrez une petite refonte et observez les réactions des personnes concernées."
+    ] },
+  institution: {
+    title: "Transformer les usages privés de l’IA en capacité partagée",
+    why: "La valeur se perd : des salariés construisent des usages utiles de l’IA, et personne d’autre ne les connaît. Cette fuite affaiblit chaque euro investi dans l’IA (fiche 8 du guide).",
+    actions: [
+      "Repérez un usage de l’IA déjà en place, documentez-le, transmettez-le et mesurez le nombre de personnes qui l’adoptent en 30 jours.",
+      "Lancez un défi entre directions : chacune présente chaque trimestre une amélioration fondée sur l’IA à toute l’entreprise.",
+      "Remplacez ce trimestre un programme conçu par les RH par un programme coconçu, avec une commande ouverte et une décision partagée.",
+      "Passez en revue vos réunions récurrentes et gardez celles qui produisent un apprentissage partagé."
+    ] },
+  capacites: {
+    title: "Remplacer une question d’engagement par une question de capacité",
+    why: "Vous mesurez encore ce que les salariés ressentent davantage que ce que l’organisation sait faire. La direction de la transformation commence par la seconde question (fiche 3 du guide).",
+    actions: [
+      "Ajoutez à votre prochaine enquête la question suivante : « de quelle compétence, absente aujourd’hui, aurez-vous besoin dans votre poste dans 12 mois ? ».",
+      "Construisez une prévision des capacités d’une page pour les 3 métiers les plus exposés à l’IA dans votre entreprise, et présentez-la au CODIR.",
+      "Identifiez les 10 postes où la relève manque le plus, et suivez-les chaque mois dans une liste de vigilance.",
+      "Ouvrez votre prochain point au CODIR par les capacités, avant les effectifs."
+    ] },
+  coherence: {
+    title: "Changer d’abord la règle que les salariés regardent",
+    why: "Vous percevez les écarts entre ce que l’entreprise dit et ce qu’elle fait, sans les avoir rendus assez visibles pour les corriger. La cohérence reste un travail de jugement qu’aucun agent d’IA ne prend en charge (fiches 6 et 8 du guide).",
+    actions: [
+      "Choisissez l’incohérence la plus visible (valeurs et critères d’évaluation, discours sur l’innovation et tolérance à l’échec, ou promesse employeur et première semaine) et décrivez-la sur une page.",
+      "Demandez à quelques salariés de terrain : « qu’est-ce qui vous prouverait que cette transformation est réelle ? », puis changez sur un périmètre réduit la règle qu’ils désignent.",
+      "Rédigez votre thèse de contribution d’une page et testez-la auprès de 3 dirigeants (fiche 11 du guide).",
+      "Installez un rituel mensuel qui passe en revue un moment de l’expérience et fait remonter les incohérences."
+    ] }
+};
+
+const LABELS = {
+  part1Tag: "Partie 1 · 20 questions",
+  part1Title: "Votre fonction RH sur l’échelle du HR Design",
+  part1Text: "Répondez pour votre fonction telle qu’elle fonctionne aujourd’hui.",
+  part2Tag: "Partie 2 · 8 questions",
+  part2Title: "Votre préparation à la direction de la transformation",
+  part2Text: "Répondez pour vous-même. Chaque réponse négative désigne une responsabilité à prendre dans les 12 prochains mois.",
+  next: "Suite : ",
+  yes: "Oui",
+  no: "Non",
+  priority: "Déplacement prioritaire",
+  then: "Ensuite",
+  done: "Tout est prêt : cliquez pour voir votre résultat.",
+  left1: "question restante",
+  leftN: "questions restantes",
+  alertTag: "Point de vigilance · syndrome de l’échelon 3,5",
+  alertText: "Votre déplacement le plus avancé et votre déplacement le moins avancé sont séparés de plus de 1,5 point. Cet écart signale une fonction qui parle comme l’échelon 4 sur certains sujets et fonctionne comme l’échelon 2 sur d’autres (fiche 5 du guide). Commencez par le déplacement le plus faible.",
+  readyAll: "Vous avez répondu oui aux 8 questions. Votre trajectoire se joue désormais dans la négociation du poste : obtenez le périmètre (budget, portefeuille et rattachement à la direction générale) avant le titre.",
+  readyStart: "Phase par laquelle commencer : ",
+  readyList: "Les responsabilités à prendre dans les 12 prochains mois"
+};
+
+
+// ============================================================
+// ÉTAT
+// ============================================================
+const TOTAL = QUESTIONS.length + READY.length;
+let answers = new Array(QUESTIONS.length).fill(null);
+let ready = new Array(READY.length).fill(null);
+
+function startAssessment() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('questionnaire').style.display = 'block';
+  document.getElementById('qTotal').textContent = TOTAL;
+  renderQuestions();
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function partTitle(tag, title, text) {
+  const d = document.createElement('div');
+  d.className = 'part-title';
+  d.innerHTML = `<div class="tag">${tag}</div><h2>${title}</h2><p>${text}</p>`;
+  return d;
+}
+
+function renderQuestions() {
+  const container = document.getElementById('qContainer');
+  container.innerHTML = '';
+  container.appendChild(partTitle(LABELS.part1Tag, LABELS.part1Title, LABELS.part1Text));
+
+  QUESTIONS.forEach((q, idx) => {
+    const dim = DIMENSIONS.find(d => d.id === q.dim);
+    const opts = shuffle(q.options);
+    const qDiv = document.createElement('div');
+    qDiv.className = 'question';
+    qDiv.id = `q${idx}`;
+    qDiv.innerHTML = `
+      <div class="q-meta"><span class="dim">${String(idx + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span> · ${dim.label}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">
+        ${opts.map((o, oi) => `
+          <button class="option" onclick="selectAnswer(${idx}, ${oi}, ${o.v})">
+            <span class="marker">${String.fromCharCode(65 + oi)}</span>
+            <span>${o.t}</span>
+          </button>`).join('')}
+      </div>`;
+    container.appendChild(qDiv);
+
+    if ((idx + 1) % 4 === 0 && idx < QUESTIONS.length - 1) {
+      const nextDim = DIMENSIONS.find(d => d.id === QUESTIONS[idx + 1].dim);
+      const sb = document.createElement('div');
+      sb.className = 'section-break';
+      sb.innerHTML = `<span>${LABELS.next}${nextDim.label}</span>`;
+      container.appendChild(sb);
+    }
+  });
+
+  container.appendChild(partTitle(LABELS.part2Tag, LABELS.part2Title, LABELS.part2Text));
+
+  READY.forEach((r, i) => {
+    const idx = QUESTIONS.length + i;
+    const qDiv = document.createElement('div');
+    qDiv.className = 'question';
+    qDiv.id = `q${idx}`;
+    qDiv.innerHTML = `
+      <div class="q-meta"><span class="dim">${String(idx + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span> · ${LABELS.part2Title}</div>
+      <div class="q-text">${r.q}</div>
+      <div class="options yesno">
+        <button class="option" onclick="selectReady(${i}, 0, true)"><span class="marker">A</span><span>${LABELS.yes}</span></button>
+        <button class="option" onclick="selectReady(${i}, 1, false)"><span class="marker">B</span><span>${LABELS.no}</span></button>
+      </div>`;
+    container.appendChild(qDiv);
+  });
+}
+
+function markSelected(globalIdx, optIdx) {
+  const qDiv = document.getElementById(`q${globalIdx}`);
+  qDiv.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+  qDiv.querySelectorAll('.option')[optIdx].classList.add('selected');
+  updateProgress();
+  scrollToNext(globalIdx);
+}
+
+function selectAnswer(qIdx, optIdx, value) {
+  answers[qIdx] = value;
+  markSelected(qIdx, optIdx);
+}
+
+function selectReady(i, optIdx, value) {
+  ready[i] = value;
+  markSelected(QUESTIONS.length + i, optIdx);
+}
+
+function allAnswers() {
+  return answers.concat(ready);
+}
+
+function scrollToNext(globalIdx) {
+  const next = allAnswers().findIndex((a, i) => a === null && i > globalIdx);
+  if (next === -1) return;
+  setTimeout(() => {
+    const el = document.getElementById(`q${next}`);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+    }
+  }, 250);
+}
+
+function updateProgress() {
+  const answered = allAnswers().filter(a => a !== null).length;
+  const pct = Math.round((answered / TOTAL) * 100);
+  document.getElementById('qNum').textContent = answered;
+  document.getElementById('qPct').textContent = pct + ' %';
+  document.getElementById('progressFill').style.width = pct + '%';
+  const btn = document.getElementById('submitBtn');
+  const help = document.getElementById('submitHelp');
+  const left = TOTAL - answered;
+  if (left === 0) {
+    btn.disabled = false;
+    help.textContent = LABELS.done;
+  } else {
+    btn.disabled = true;
+    help.textContent = `${left} ${left > 1 ? LABELS.leftN : LABELS.left1}`;
+  }
+}
+
+// ============================================================
+// CALCUL
+// Seuils de la moyenne générale : < 1,5 échelon 1 ; < 2 échelon 2 ;
+// < 2,75 échelon 3 ; < 3,5 échelon 4 ; sinon échelon 5
+// ============================================================
+function computeResults() {
+  const scores = {};
+  DIMENSIONS.forEach(d => {
+    const vals = QUESTIONS.map((q, i) => q.dim === d.id ? answers[i] : null).filter(v => v !== null);
+    scores[d.id] = vals.reduce((a, b) => a + b, 0) / vals.length;
+  });
+  const overall = Object.values(scores).reduce((a, b) => a + b, 0) / DIMENSIONS.length;
+
+  let rung;
+  if (overall < 1.5) rung = 1;
+  else if (overall < 2.0) rung = 2;
+  else if (overall < 2.75) rung = 3;
+  else if (overall < 3.5) rung = 4;
+  else rung = 5;
+
+  renderResults(scores, rung);
+  document.getElementById('questionnaire').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function fr(n) {
+  return n.toFixed(1).replace('.', ',');
+}
+
+function renderResults(scores, rung) {
+  const l = LADDER.find(x => x.n === rung);
+  document.getElementById('rungName').textContent = l.name;
+  document.getElementById('rungRole').textContent = l.role;
+  document.getElementById('rungSummary').textContent = l.summary;
+
+  document.getElementById('ladderRungs').innerHTML = LADDER.slice().reverse().map(x => {
+    let cls = '';
+    if (x.n === rung) cls = 'you';
+    else if (x.n < rung) cls = 'below';
+    return `<div class="ladder-rung ${cls}">
+        <div class="ladder-num">0${x.n}</div>
+        <div class="ladder-name"><b>${x.name}</b></div>
+        <div class="ladder-role">${x.role}</div>
+      </div>`;
+  }).join('');
+
+  const sorted = [...DIMENSIONS].sort((a, b) => scores[a.id] - scores[b.id]);
+
+  const gap = scores[sorted[sorted.length - 1].id] - scores[sorted[0].id];
+  document.getElementById('alertBox').innerHTML = (rung >= 3 && gap > 1.5)
+    ? `<div class="alert"><div class="reco-tag">${LABELS.alertTag}</div><p>${LABELS.alertText}</p></div>`
+    : '';
+
+  document.getElementById('dimRows').innerHTML = sorted.map(d => {
+    const s = scores[d.id];
+    const pct = ((s - 1) / 3) * 100;
+    let cls = 'low';
+    if (s >= 3) cls = 'high';
+    else if (s >= 2) cls = 'mid';
+    return `<div class="dim-row">
+        <div class="dim-info">
+          <div class="dim-label">${d.label}</div>
+          <div class="dim-bar-wrap"><div class="dim-bar ${cls}" style="width:${pct}%"></div></div>
+        </div>
+        <div class="dim-score">${fr(s)} / 4</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('recoBlocks').innerHTML = sorted.slice(0, 2).map((d, i) => {
+    const r = RECOMMENDATIONS[d.id];
+    return `<div class="reco-block ${i === 0 ? 'priority' : ''}">
+        <div class="reco-tag">${i === 0 ? LABELS.priority : LABELS.then} · ${d.label}</div>
+        <h3 class="reco-title">${r.title}</h3>
+        <p class="reco-why">${r.why}</p>
+        <ol class="reco-actions">${r.actions.map(a => `<li>${a}</li>`).join('')}</ol>
+      </div>`;
+  }).join('');
+
+  const yes = ready.filter(v => v === true).length;
+  const missing = READY.filter((r, i) => ready[i] === false).sort((a, b) => a.step - b.step);
+  let html = `<p class="ready-score"><b>${yes} / 8</b> réponses positives</p>`;
+  if (missing.length === 0) {
+    html += `<p class="ready-phase">${LABELS.readyAll}</p>`;
+  } else {
+    const firstStep = missing[0].step;
+    const phase = PHASES.find(p => p.steps.includes(firstStep));
+    html += `<p class="ready-phase"><b>${LABELS.readyStart}${phase.name}.</b> ${phase.text}</p>`;
+    html += `<div class="dim-title">${LABELS.readyList}</div><ul class="ready-list">`;
+    html += missing.map(r => `<li><span class="step">${STEPS[r.step]}</span>${r.todo}</li>`).join('');
+    html += `</ul>`;
+  }
+  document.getElementById('readyBlock').innerHTML = html;
+}
+
+function restart() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  ready = new Array(READY.length).fill(null);
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('intro').style.display = 'block';
+  document.getElementById('questionnaire').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
