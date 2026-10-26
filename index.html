@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Autodiagnostic : de la DRH à la direction de la transformation | Benjamin Chaminade</title>
-<meta name="description" content="Un autodiagnostic en 28 questions pour situer votre fonction RH sur l’échelle du HR Design et mesurer votre préparation à la direction de la transformation. Outil compagnon du guide pratique Le DRH Chief Transformation Officer.">
+<meta name="description" content="Un autodiagnostic en 6 étapes et 28 questions pour situer votre fonction RH sur l’échelle du HR Design et mesurer votre préparation à la direction de la transformation. Outil compagnon du guide pratique Le DRH Chief Transformation Officer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -438,6 +438,101 @@
     .ladder-title, .ladder-rung { grid-template-columns: 30px 1fr 1fr; gap: 10px; }
     .ladder-name b, .ladder-role { font-size: 13px; }
   }
+
+  /* -------- Parcours en étapes -------- */
+  .resume { margin-top: 22px; padding: 18px 20px; background: var(--sky-2); border: 1px solid var(--line); display: none; }
+  .resume p { margin-bottom: 14px; }
+  .resume .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ghost-btn {
+    font-family: inherit; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+    padding: 13px 20px; background: transparent; color: var(--blue); border: 2px solid var(--blue); cursor: pointer;
+  }
+  .ghost-btn:hover { background: var(--blue); color: #fff; }
+
+  .stepper { position: sticky; top: 0; z-index: 20; background: var(--paper); padding: 14px 0 12px; border-bottom: 1px solid var(--sky); margin-bottom: 22px; }
+  .stepper-info {
+    display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+    font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 10px;
+  }
+  .stepper-info b { color: var(--blue); }
+  .segments { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .segment { height: 5px; background: var(--sky); border-radius: 3px; overflow: hidden; }
+  .segment span { display: block; height: 100%; width: 0; background: var(--blue); transition: width 0.3s; }
+  .segment.done span { width: 100%; }
+
+  .step-intro { background: var(--sky); padding: 24px 26px; margin-bottom: 28px; }
+  .step-intro .tag { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue); margin-bottom: 8px; }
+  .step-intro h2 { font-weight: 800; font-size: 22px; line-height: 1.25; text-transform: uppercase; margin-bottom: 8px; }
+  .step-intro p { font-weight: 300; font-size: 16px; }
+
+  .option { min-height: 52px; width: 100%; }
+  .option:focus-visible, .nav-btn:focus-visible, .start-btn:focus-visible, .ghost-btn:focus-visible, .cta-btn:focus-visible {
+    outline: 3px solid var(--orange); outline-offset: 2px;
+  }
+
+  .step-nav {
+    position: sticky; bottom: 0; z-index: 20; background: var(--paper);
+    border-top: 1px solid var(--line); margin-top: 8px; padding: 14px 0 calc(14px + env(safe-area-inset-bottom));
+  }
+  .step-nav .row { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+  .nav-btn {
+    font-family: inherit; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+    min-height: 52px; padding: 12px 16px; cursor: pointer; border: 2px solid var(--blue);
+  }
+  .nav-btn.prev { background: transparent; color: var(--blue); }
+  .nav-btn.prev:hover:not(:disabled) { background: var(--sky-2); }
+  .nav-btn.next { background: var(--blue); color: #fff; }
+  .nav-btn.next:hover:not(:disabled) { background: var(--navy); border-color: var(--navy); }
+  .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .nav-help { text-align: center; margin-top: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+  .saved-note { text-align: center; margin-top: 4px; font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  body.in-quiz header { display: none; }
+  #results .restart-row { display: flex; justify-content: center; margin-bottom: 32px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .wrap { padding: 16px 16px 32px; }
+    header { padding: 26px 20px 24px; margin-bottom: 24px; }
+    h1 { font-size: 27px; }
+    .lede { font-size: 17px; }
+    .eyebrow { font-size: 10px; letter-spacing: 0.14em; }
+    .meta { flex-direction: column; gap: 6px; }
+    .intro { padding: 22px 18px; }
+    .start-btn { width: 100%; text-align: center; }
+    .resume .row { flex-direction: column; }
+    .resume .row button { width: 100%; }
+    .step-intro { padding: 20px 18px; margin-bottom: 22px; }
+    .step-intro h2 { font-size: 18px; }
+    .q-text { font-size: 17px; margin-bottom: 14px; }
+    .question { margin-bottom: 24px; padding-bottom: 24px; }
+    .option { padding: 14px 14px; font-size: 15px; gap: 10px; }
+    .stepper-info { font-size: 10px; letter-spacing: 0.08em; }
+    .stepper-info .step-name { display: none; }
+    .saved-note { display: none; }
+    .step-nav { padding-top: 10px; }
+    .nav-btn { font-size: 12px; letter-spacing: 0.08em; padding: 12px 10px; }
+    .result-hero { padding: 26px 20px 28px; }
+    .rung-name { font-size: 30px; }
+    .rung-summary { font-size: 16px; }
+    .ladder { padding: 16px; }
+    .ladder-title { display: none; }
+    .ladder-rung { grid-template-columns: 30px 1fr; gap: 4px 10px; }
+    .ladder-role { grid-column: 2; font-size: 13px; opacity: 0.85; }
+    .ladder-rung.you { margin: 6px -16px; padding: 12px 16px; }
+    .dim-row { grid-template-columns: 1fr; gap: 6px; }
+    .dim-score { justify-self: start; }
+    .reco-block { padding: 20px 16px; }
+    .reco-title { font-size: 18px; }
+    .reco-actions li { padding-left: 30px; font-size: 15px; }
+    .cta { padding: 26px 18px; }
+    .cta-actions { flex-direction: column; }
+    .cta-btn { width: 100%; text-align: center; }
+    footer { flex-direction: column; }
+  }
+  @media print {
+    .stepper, .step-nav, #questionnaire, #intro, .restart-row { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -447,38 +542,49 @@
   <header>
     <div class="eyebrow">
       <span>HR Design / Autodiagnostic</span>
-      <span>v.1 / 2026</span>
+      <span>v.2 / 2026</span>
     </div>
     <h1>De la DRH à la<br><em>direction de la transformation ?</em></h1>
     <p class="lede">Un autodiagnostic pour les DRH et les équipes RH qui veulent passer de l’accompagnement des transformations à leur direction.</p>
     <div class="meta">
-      <span><b>8 min</b> / 28 questions</span>
-      <span><b>5 échelons</b> et 5 déplacements</span>
+      <span><b>6 étapes</b> de 2 minutes environ</span>
+      <span><b>28 questions</b>, 5 échelons et 5 déplacements</span>
       <span><b>Vos réponses</b> restent sur votre appareil</span>
     </div>
   </header>
 
   <div class="intro" id="intro">
     <h2>Avant de commencer</h2>
-    <p>Cet outil accompagne le guide pratique <em>Le DRH Chief Transformation Officer</em>. Il se déroule en 2 parties.</p>
-    <p>La première partie (20 questions) situe votre fonction RH sur l’échelle du HR Design, de la conformité au business creator, et repère le déplacement à engager en premier. La seconde partie (8 questions) mesure votre préparation personnelle à la direction de la transformation et vous indique la phase de la feuille de route en 9 étapes par laquelle commencer.</p>
+    <p>Cet outil accompagne le guide pratique <em>Le DRH Chief Transformation Officer</em>. Il se déroule en 6 étapes courtes, que vous pouvez enchaîner ou faire en plusieurs fois : vos réponses sont enregistrées sur votre appareil à chaque clic.</p>
+    <p>Les étapes 1 à 5 (4 questions chacune) situent votre fonction RH sur l’échelle du HR Design et repèrent le déplacement à engager en premier. L’étape 6 (8 questions) mesure votre préparation personnelle à la direction de la transformation.</p>
     <p>Répondez pour votre fonction telle qu’elle fonctionne aujourd’hui, et non telle que vous aimeriez qu’elle fonctionne. Aucune réponse neutre n’est proposée, et ce choix est délibéré.</p>
-    <p>Vos réponses ne quittent jamais cette page : rien n’est envoyé nulle part. Vous pouvez enregistrer votre résultat en PDF à la fin, avec la fonction d’impression de votre navigateur.</p>
-    <button class="start-btn" onclick="startAssessment()">Commencer l’autodiagnostic →</button>
+    <p>Vos réponses ne quittent jamais cette page : rien n’est envoyé nulle part. Vous pourrez enregistrer votre résultat en PDF à la fin.</p>
+    <button class="start-btn" id="startBtn" onclick="startAssessment()">Commencer l’autodiagnostic →</button>
+    <div class="resume" id="resumeBox">
+      <p id="resumeText"></p>
+      <div class="row">
+        <button class="start-btn" style="margin-top:0" onclick="resumeAssessment()">Reprendre →</button>
+        <button class="ghost-btn" onclick="restart()">Recommencer à zéro</button>
+      </div>
+    </div>
   </div>
 
   <div id="questionnaire" style="display:none;">
-    <div class="progress-wrap">
-      <div class="progress-info">
-        <span>Réponses <b id="qNum">0</b> sur <b id="qTotal">28</b></span>
+    <div class="stepper">
+      <div class="stepper-info">
+        <span>Étape <b id="stepNum">1</b> sur <b>6</b><span class="step-name" id="stepName"></span></span>
         <span><b id="qPct">0 %</b></span>
       </div>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="segments" id="segments"></div>
     </div>
-    <div id="qContainer"></div>
-    <div class="submit-wrap">
-      <button class="submit-btn" id="submitBtn" disabled onclick="computeResults()">Voir mon résultat</button>
-      <p class="submit-help" id="submitHelp">Répondez aux 28 questions pour voir votre résultat</p>
+    <div id="stepContainer"></div>
+    <div class="step-nav">
+      <div class="row">
+        <button class="nav-btn prev" id="prevBtn" onclick="goStep(-1)">← Retour</button>
+        <button class="nav-btn next" id="nextBtn" onclick="goStep(1)" disabled>Suivant →</button>
+      </div>
+      <p class="nav-help" id="navHelp"></p>
+      <p class="saved-note" id="savedNote"></p>
     </div>
   </div>
 
@@ -520,9 +626,9 @@
         <a href="https://benjaminchaminade.com/drh-chief-transformation-officer/" class="cta-btn">Lire l’article →</a>
         <a href="https://benjaminchaminade.com/contact/" class="cta-btn secondary">Me contacter</a>
         <button class="cta-btn secondary" onclick="window.print()">Enregistrer en PDF</button>
-        <button class="cta-btn secondary" onclick="restart()">Recommencer</button>
       </div>
     </div>
+    <div class="restart-row"><button class="ghost-btn" onclick="restart()">Refaire l’autodiagnostic</button></div>
   </div>
 
   <footer>
@@ -534,11 +640,6 @@
 
 
 <script>
-// ============================================================
-// DONNÉES
-// Partie 1 : 5 déplacements x 4 questions = 20 questions, valeurs 1 à 4
-// Partie 2 : 8 questions oui ou non sur la préparation personnelle
-// ============================================================
 
 const DIMENSIONS = [
   { id: "anticipation", label: "De la réponse à l’anticipation" },
@@ -834,139 +935,186 @@ const LABELS = {
   readyList: "Les responsabilités à prendre dans les 12 prochains mois"
 };
 
+const STEP_INTROS = {
+  anticipation: "Le partenaire réagit à la commande, et le contributeur l’interroge.",
+  experience: "La marque employeur est une transaction, et l’architecture de l’expérience est une offre.",
+  institution: "Le contributeur transforme les usages privés de l’IA en capacité partagée.",
+  capacites: "La prévision des capacités demande ce que l’organisation sait faire, au-delà de ce que les salariés ressentent.",
+  coherence: "Le contributeur répond de la cohérence entre ce que l’entreprise dit, ce qu’elle fait et ce que vivent les salariés."
+};
+const UI = {
+  stepTag: "Étape ",
+  stepOf: " sur 6 · ",
+  step6Title: "Votre préparation à la direction de la transformation",
+  step6Text: "Répondez pour vous-même. Chaque réponse négative désigne une responsabilité à prendre dans les 12 prochains mois.",
+  shiftTag: "Déplacement ",
+  next: "Suivant →",
+  last: "Voir mon résultat →",
+  missing1: "Encore 1 réponse pour continuer",
+  missingN: "Encore {n} réponses pour continuer",
+  ready: "Étape complète",
+  saved: "Réponses enregistrées sur cet appareil",
+  resume: "Vous avez commencé l’autodiagnostic : {a} réponses sur 28 sont enregistrées sur cet appareil. Reprenez à l’étape {s}, ou recommencez à zéro."
+};
+
 
 // ============================================================
-// ÉTAT
+// ÉTAT ET SAUVEGARDE LOCALE
 // ============================================================
 const TOTAL = QUESTIONS.length + READY.length;
+const STEPS_N = 6;
+const KEY = 'drh-cto-autodiagnostic-v2';
 let answers = new Array(QUESTIONS.length).fill(null);
 let ready = new Array(READY.length).fill(null);
+let step = 0;
 
-function startAssessment() {
-  document.getElementById('intro').style.display = 'none';
-  document.getElementById('questionnaire').style.display = 'block';
-  document.getElementById('qTotal').textContent = TOTAL;
-  renderQuestions();
-  updateProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify({ answers, ready, step })); return true; } catch (e) { return false; }
 }
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (d && Array.isArray(d.answers) && d.answers.length === QUESTIONS.length && Array.isArray(d.ready) && d.ready.length === READY.length) return d;
+  } catch (e) {}
+  return null;
+}
+function clearSaved() { try { localStorage.removeItem(KEY); } catch (e) {} }
 
-function shuffle(arr) {
+// Mélange stable des options : même ordre d'une session à l'autre
+function seeded(seed) {
+  let s = seed * 9301 + 49297;
+  return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+}
+function stableShuffle(arr, seed) {
+  const rnd = seeded(seed + 7);
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rnd() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
 
-function partTitle(tag, title, text) {
-  const d = document.createElement('div');
-  d.className = 'part-title';
-  d.innerHTML = `<div class="tag">${tag}</div><h2>${title}</h2><p>${text}</p>`;
-  return d;
-}
+function answeredCount() { return answers.concat(ready).filter(v => v !== null).length; }
 
-function renderQuestions() {
-  const container = document.getElementById('qContainer');
-  container.innerHTML = '';
-  container.appendChild(partTitle(LABELS.part1Tag, LABELS.part1Title, LABELS.part1Text));
-
-  QUESTIONS.forEach((q, idx) => {
-    const dim = DIMENSIONS.find(d => d.id === q.dim);
-    const opts = shuffle(q.options);
-    const qDiv = document.createElement('div');
-    qDiv.className = 'question';
-    qDiv.id = `q${idx}`;
-    qDiv.innerHTML = `
-      <div class="q-meta"><span class="dim">${String(idx + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span> · ${dim.label}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="options">
-        ${opts.map((o, oi) => `
-          <button class="option" onclick="selectAnswer(${idx}, ${oi}, ${o.v})">
-            <span class="marker">${String.fromCharCode(65 + oi)}</span>
-            <span>${o.t}</span>
-          </button>`).join('')}
-      </div>`;
-    container.appendChild(qDiv);
-
-    if ((idx + 1) % 4 === 0 && idx < QUESTIONS.length - 1) {
-      const nextDim = DIMENSIONS.find(d => d.id === QUESTIONS[idx + 1].dim);
-      const sb = document.createElement('div');
-      sb.className = 'section-break';
-      sb.innerHTML = `<span>${LABELS.next}${nextDim.label}</span>`;
-      container.appendChild(sb);
-    }
-  });
-
-  container.appendChild(partTitle(LABELS.part2Tag, LABELS.part2Title, LABELS.part2Text));
-
-  READY.forEach((r, i) => {
-    const idx = QUESTIONS.length + i;
-    const qDiv = document.createElement('div');
-    qDiv.className = 'question';
-    qDiv.id = `q${idx}`;
-    qDiv.innerHTML = `
-      <div class="q-meta"><span class="dim">${String(idx + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span> · ${LABELS.part2Title}</div>
-      <div class="q-text">${r.q}</div>
-      <div class="options yesno">
-        <button class="option" onclick="selectReady(${i}, 0, true)"><span class="marker">A</span><span>${LABELS.yes}</span></button>
-        <button class="option" onclick="selectReady(${i}, 1, false)"><span class="marker">B</span><span>${LABELS.no}</span></button>
-      </div>`;
-    container.appendChild(qDiv);
-  });
-}
-
-function markSelected(globalIdx, optIdx) {
-  const qDiv = document.getElementById(`q${globalIdx}`);
-  qDiv.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
-  qDiv.querySelectorAll('.option')[optIdx].classList.add('selected');
-  updateProgress();
-  scrollToNext(globalIdx);
-}
-
-function selectAnswer(qIdx, optIdx, value) {
-  answers[qIdx] = value;
-  markSelected(qIdx, optIdx);
-}
-
-function selectReady(i, optIdx, value) {
-  ready[i] = value;
-  markSelected(QUESTIONS.length + i, optIdx);
-}
-
-function allAnswers() {
-  return answers.concat(ready);
-}
-
-function scrollToNext(globalIdx) {
-  const next = allAnswers().findIndex((a, i) => a === null && i > globalIdx);
-  if (next === -1) return;
-  setTimeout(() => {
-    const el = document.getElementById(`q${next}`);
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
-    }
-  }, 250);
-}
-
-function updateProgress() {
-  const answered = allAnswers().filter(a => a !== null).length;
-  const pct = Math.round((answered / TOTAL) * 100);
-  document.getElementById('qNum').textContent = answered;
-  document.getElementById('qPct').textContent = pct + ' %';
-  document.getElementById('progressFill').style.width = pct + '%';
-  const btn = document.getElementById('submitBtn');
-  const help = document.getElementById('submitHelp');
-  const left = TOTAL - answered;
-  if (left === 0) {
-    btn.disabled = false;
-    help.textContent = LABELS.done;
-  } else {
-    btn.disabled = true;
-    help.textContent = `${left} ${left > 1 ? LABELS.leftN : LABELS.left1}`;
+function initIntro() {
+  const d = load();
+  if (d && d.answers.concat(d.ready).some(v => v !== null)) {
+    answers = d.answers; ready = d.ready; step = Math.min(Math.max(d.step || 0, 0), STEPS_N - 1);
+    document.getElementById('startBtn').style.display = 'none';
+    document.getElementById('resumeBox').style.display = 'block';
+    document.getElementById('resumeText').textContent = UI.resume.replace('{a}', answeredCount()).replace('{s}', step + 1);
   }
+}
+
+function showQuestionnaire() {
+  document.body.classList.add('in-quiz');
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('questionnaire').style.display = 'block';
+  const seg = document.getElementById('segments');
+  seg.innerHTML = Array.from({ length: STEPS_N }, () => '<div class="segment"><span></span></div>').join('');
+  renderStep();
+}
+function startAssessment() { step = 0; showQuestionnaire(); }
+function resumeAssessment() { showQuestionnaire(); }
+
+// ============================================================
+// RENDU D'UNE ÉTAPE
+// ============================================================
+function stepQuestionIdx(s) {
+  if (s < 5) return QUESTIONS.map((q, i) => q.dim === DIMENSIONS[s].id ? i : -1).filter(i => i >= 0);
+  return [];
+}
+
+function renderStep() {
+  const c = document.getElementById('stepContainer');
+  let html = '';
+  if (step < 5) {
+    const d = DIMENSIONS[step];
+    html += `<div class="step-intro"><div class="tag">${UI.shiftTag}${step + 1} / 5</div><h2>${d.label}</h2><p>${STEP_INTROS[d.id]}</p></div>`;
+    stepQuestionIdx(step).forEach((qi, k) => {
+      const q = QUESTIONS[qi];
+      const opts = stableShuffle(q.options, qi);
+      html += `<div class="question" id="q${qi}">
+        <div class="q-meta"><span class="dim">Question ${k + 1} / 4</span></div>
+        <div class="q-text" id="qt${qi}">${q.q}</div>
+        <div class="options" role="group" aria-labelledby="qt${qi}">
+          ${opts.map((o, oi) => `<button type="button" class="option${answers[qi] === o.v ? ' selected' : ''}" aria-pressed="${answers[qi] === o.v}" data-v="${o.v}" onclick="pick(${qi}, ${o.v}, this)">
+            <span class="marker">${String.fromCharCode(65 + oi)}</span><span>${o.t}</span></button>`).join('')}
+        </div></div>`;
+    });
+  } else {
+    html += `<div class="step-intro"><div class="tag">${LABELS.part2Tag}</div><h2>${UI.step6Title}</h2><p>${UI.step6Text}</p></div>`;
+    READY.forEach((r, i) => {
+      html += `<div class="question" id="r${i}">
+        <div class="q-meta"><span class="dim">Question ${i + 1} / 8</span></div>
+        <div class="q-text" id="rt${i}">${r.q}</div>
+        <div class="options yesno" role="group" aria-labelledby="rt${i}">
+          <button type="button" class="option${ready[i] === true ? ' selected' : ''}" aria-pressed="${ready[i] === true}" onclick="pickReady(${i}, true, this)"><span class="marker">A</span><span>${LABELS.yes}</span></button>
+          <button type="button" class="option${ready[i] === false ? ' selected' : ''}" aria-pressed="${ready[i] === false}" onclick="pickReady(${i}, false, this)"><span class="marker">B</span><span>${LABELS.no}</span></button>
+        </div></div>`;
+    });
+  }
+  c.innerHTML = html;
+  document.getElementById('stepNum').textContent = step + 1;
+  document.getElementById('stepName').textContent = ' · ' + (step < 5 ? DIMENSIONS[step].label : UI.step6Title);
+  document.getElementById('prevBtn').disabled = step === 0;
+  document.getElementById('nextBtn').textContent = step === STEPS_N - 1 ? UI.last : UI.next;
+  updateNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function stepMissing(s) {
+  if (s < 5) return stepQuestionIdx(s).filter(i => answers[i] === null).length;
+  return ready.filter(v => v === null).length;
+}
+
+function updateNav() {
+  const miss = stepMissing(step);
+  document.getElementById('nextBtn').disabled = miss > 0;
+  document.getElementById('navHelp').textContent = miss === 0 ? UI.ready : (miss === 1 ? UI.missing1 : UI.missingN.replace('{n}', miss));
+  const pct = Math.round(answeredCount() / TOTAL * 100);
+  document.getElementById('qPct').textContent = pct + '\u00a0%';
+  document.querySelectorAll('#segments .segment').forEach((el, i) => {
+    const m = stepMissing(i);
+    const size = i < 5 ? 4 : 8;
+    el.querySelector('span').style.width = Math.round((size - m) / size * 100) + '%';
+  });
+}
+
+function markGroup(btn) {
+  btn.parentElement.querySelectorAll('.option').forEach(el => { el.classList.remove('selected'); el.setAttribute('aria-pressed', 'false'); });
+  btn.classList.add('selected');
+  btn.setAttribute('aria-pressed', 'true');
+}
+
+function afterPick(currentId) {
+  const ok = save();
+  document.getElementById('savedNote').textContent = ok ? UI.saved : '';
+  updateNav();
+  // passe à la question suivante sans réponse de l'étape
+  const blocks = Array.from(document.querySelectorAll('#stepContainer .question'));
+  const idx = blocks.findIndex(b => b.id === currentId);
+  const next = blocks.slice(idx + 1).find(b => !b.querySelector('.option.selected'));
+  const target = next || (stepMissing(step) === 0 ? document.querySelector('.step-nav') : null);
+  if (target) {
+    setTimeout(() => {
+      const top = window.scrollY + target.getBoundingClientRect().top - 90;
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    }, 200);
+  }
+}
+
+function pick(qi, v, btn) { answers[qi] = v; markGroup(btn); afterPick('q' + qi); }
+function pickReady(i, v, btn) { ready[i] = v; markGroup(btn); afterPick('r' + i); }
+
+function goStep(delta) {
+  if (delta > 0 && stepMissing(step) > 0) return;
+  if (delta > 0 && step === STEPS_N - 1) { computeResults(); return; }
+  step = Math.min(Math.max(step + delta, 0), STEPS_N - 1);
+  save();
+  renderStep();
 }
 
 // ============================================================
@@ -981,23 +1129,20 @@ function computeResults() {
     scores[d.id] = vals.reduce((a, b) => a + b, 0) / vals.length;
   });
   const overall = Object.values(scores).reduce((a, b) => a + b, 0) / DIMENSIONS.length;
-
   let rung;
   if (overall < 1.5) rung = 1;
   else if (overall < 2.0) rung = 2;
   else if (overall < 2.75) rung = 3;
   else if (overall < 3.5) rung = 4;
   else rung = 5;
-
+  document.body.classList.remove('in-quiz');
   renderResults(scores, rung);
   document.getElementById('questionnaire').style.display = 'none';
   document.getElementById('results').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function fr(n) {
-  return n.toFixed(1).replace('.', ',');
-}
+function fr(n) { return n.toFixed(1).replace('.', ','); }
 
 function renderResults(scores, rung) {
   const l = LADDER.find(x => x.n === rung);
@@ -1009,19 +1154,13 @@ function renderResults(scores, rung) {
     let cls = '';
     if (x.n === rung) cls = 'you';
     else if (x.n < rung) cls = 'below';
-    return `<div class="ladder-rung ${cls}">
-        <div class="ladder-num">0${x.n}</div>
-        <div class="ladder-name"><b>${x.name}</b></div>
-        <div class="ladder-role">${x.role}</div>
-      </div>`;
+    return `<div class="ladder-rung ${cls}"><div class="ladder-num">0${x.n}</div><div class="ladder-name"><b>${x.name}</b></div><div class="ladder-role">${x.role}</div></div>`;
   }).join('');
 
   const sorted = [...DIMENSIONS].sort((a, b) => scores[a.id] - scores[b.id]);
-
   const gap = scores[sorted[sorted.length - 1].id] - scores[sorted[0].id];
   document.getElementById('alertBox').innerHTML = (rung >= 3 && gap > 1.5)
-    ? `<div class="alert"><div class="reco-tag">${LABELS.alertTag}</div><p>${LABELS.alertText}</p></div>`
-    : '';
+    ? `<div class="alert"><div class="reco-tag">${LABELS.alertTag}</div><p>${LABELS.alertText}</p></div>` : '';
 
   document.getElementById('dimRows').innerHTML = sorted.map(d => {
     const s = scores[d.id];
@@ -1029,23 +1168,16 @@ function renderResults(scores, rung) {
     let cls = 'low';
     if (s >= 3) cls = 'high';
     else if (s >= 2) cls = 'mid';
-    return `<div class="dim-row">
-        <div class="dim-info">
-          <div class="dim-label">${d.label}</div>
-          <div class="dim-bar-wrap"><div class="dim-bar ${cls}" style="width:${pct}%"></div></div>
-        </div>
-        <div class="dim-score">${fr(s)} / 4</div>
-      </div>`;
+    return `<div class="dim-row"><div class="dim-info"><div class="dim-label">${d.label}</div>
+      <div class="dim-bar-wrap"><div class="dim-bar ${cls}" style="width:${pct}%"></div></div></div>
+      <div class="dim-score">${fr(s)} / 4</div></div>`;
   }).join('');
 
   document.getElementById('recoBlocks').innerHTML = sorted.slice(0, 2).map((d, i) => {
     const r = RECOMMENDATIONS[d.id];
-    return `<div class="reco-block ${i === 0 ? 'priority' : ''}">
-        <div class="reco-tag">${i === 0 ? LABELS.priority : LABELS.then} · ${d.label}</div>
-        <h3 class="reco-title">${r.title}</h3>
-        <p class="reco-why">${r.why}</p>
-        <ol class="reco-actions">${r.actions.map(a => `<li>${a}</li>`).join('')}</ol>
-      </div>`;
+    return `<div class="reco-block ${i === 0 ? 'priority' : ''}"><div class="reco-tag">${i === 0 ? LABELS.priority : LABELS.then} · ${d.label}</div>
+      <h3 class="reco-title">${r.title}</h3><p class="reco-why">${r.why}</p>
+      <ol class="reco-actions">${r.actions.map(a => `<li>${a}</li>`).join('')}</ol></div>`;
   }).join('');
 
   const yes = ready.filter(v => v === true).length;
@@ -1054,8 +1186,7 @@ function renderResults(scores, rung) {
   if (missing.length === 0) {
     html += `<p class="ready-phase">${LABELS.readyAll}</p>`;
   } else {
-    const firstStep = missing[0].step;
-    const phase = PHASES.find(p => p.steps.includes(firstStep));
+    const phase = PHASES.find(p => p.steps.includes(missing[0].step));
     html += `<p class="ready-phase"><b>${LABELS.readyStart}${phase.name}.</b> ${phase.text}</p>`;
     html += `<div class="dim-title">${LABELS.readyList}</div><ul class="ready-list">`;
     html += missing.map(r => `<li><span class="step">${STEPS[r.step]}</span>${r.todo}</li>`).join('');
@@ -1065,14 +1196,20 @@ function renderResults(scores, rung) {
 }
 
 function restart() {
+  document.body.classList.remove('in-quiz');
+  clearSaved();
   answers = new Array(QUESTIONS.length).fill(null);
   ready = new Array(READY.length).fill(null);
+  step = 0;
+  document.getElementById('resumeBox').style.display = 'none';
+  document.getElementById('startBtn').style.display = 'inline-block';
   document.getElementById('results').style.display = 'none';
-  document.getElementById('intro').style.display = 'block';
   document.getElementById('questionnaire').style.display = 'none';
+  document.getElementById('intro').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-</script>
 
+initIntro();
+</script>
 </body>
 </html>
