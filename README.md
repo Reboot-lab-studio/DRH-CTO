@@ -13,14 +13,6 @@ Autodiagnostic en 28 questions, compagnon du guide pratique *Le DRH Chief Transf
 
 Les réponses restent dans le navigateur de la personne qui remplit le diagnostic. Aucune donnée n'est envoyée ni stockée. Le résultat s'enregistre en PDF avec la fonction d'impression du navigateur.
 
-## Publication sur GitHub Pages
-
-1. Créez un dépôt public et déposez à sa racine le fichier `index.html` (et ce `README.md`).
-2. Dans **Settings > Pages**, choisissez la branche `main` et le dossier `/ (root)`, puis enregistrez.
-3. L'outil est en ligne quelques minutes plus tard à l'adresse `https://<compte>.github.io/<nom-du-dépôt>/`.
-
-Le fichier est autonome : un seul fichier HTML, sans dépendance à installer. Seules les polices Fraunces et JetBrains Mono viennent de Google Fonts.
-
 ## Crédits
 
 HR Design © Benjamin Chaminade 2026. [benjaminchaminade.com](https://benjaminchaminade.com)
